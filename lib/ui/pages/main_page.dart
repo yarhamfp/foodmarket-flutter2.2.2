@@ -1,15 +1,24 @@
 part of 'pages.dart';
 
 class MainPage extends StatefulWidget {
-  // MainPage({Key? key}) : super(key: key);
+  final int initialPage;
+
+  MainPage({this.initialPage = 0});
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int selectedPage = 0;
-  PageController pageController = PageController(initialPage: 0);
+  late int selectedPage;
+  late PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedPage = widget.initialPage;
+    pageController = PageController(initialPage: widget.initialPage);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class _MainPageState extends State<MainPage> {
           ),
           SafeArea(
               child: Container(
-            color: 'FAFAFA'.toColor(),
+            color: 'FAFAFC'.toColor(),
           )),
           SafeArea(
               child: PageView(

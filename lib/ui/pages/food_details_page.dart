@@ -47,7 +47,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          widget.onBackButtonPressed!();
+                          if (widget.onBackButtonPressed != null) {
+                            widget.onBackButtonPressed!();
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.all(3),
@@ -184,7 +186,14 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                               width: 163,
                               height: 45,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(PaymentPage(
+                                    transaction: widget.transaction.copyWith(
+                                        quantity: quantity,
+                                        total: quantity *
+                                            widget.transaction.food!.price),
+                                  ));
+                                },
                                 style: ElevatedButton.styleFrom(
                                   primary: mainColor,
                                   elevation: 0,
